@@ -1,0 +1,10 @@
+.section-title {
+    border-bottom: 2px solid #dee7ec;
+    font-size: 28px;
+}
+
+input, textarea {
+    width: 480px !important;
+    padding: 20px !important;
+    font-size: 14px !important;
+}
