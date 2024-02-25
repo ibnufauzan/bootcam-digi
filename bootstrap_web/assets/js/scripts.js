@@ -11,4 +11,4 @@ console.log("Number before changed : " + myNumber);
 
 console.log(12 === 12);
 console.log(12 == "12");
-console.log(12 === "12");
+//console.log(12 === "12");
