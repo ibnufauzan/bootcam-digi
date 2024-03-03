@@ -23,13 +23,46 @@
             </div>
         </div>
 
-        <div class="row baris2">
+        <div class="row baris2 form-control">
             <p>Lorem ipsum dolor sit. <span>Lorem ipsum dolor sit.</span></p>
+            <textarea id="textbox" name="" id="" cols="30" rows="10"></textarea>
         </div>
+
+        <div class="form-control">
+            <form action="/action_page.php">
+                <label for="cars">Choose a car:</label>
+                <select id="cars" name="cars" class="form-control">
+                  <option value="volvo">Volvo</option>
+                  <option value="saab">Saab</option>
+                  <option value="fiat">Fiat</option>
+                  <option value="audi">Audi</option>
+                </select>
+                <input type="submit" class="form-control">
+              </form>
+        </div>
+
+        <div class="">
+            <button class="btn btn-primary">Hit Me</button>
+        </div>
+
+        <div class="row">
+            <form action="javascript:void(0)" id="form_data_diri">
+                <label for="">Masukan nama :</label>
+                <input type="text" id="nama_anda">
+                <label for="" id="email_anda">Masukan Email :</label>
+                <input type="tetx">
+
+                <button id="" >Send</button>
+            </form>
+        </div>
+
+        <div class="" id="nama_anda"></div>
+        <div class="" id="email_anda"></div>
     </div>
 
     <!-- Put your jQuery module here -->
     <script src="../assets/modules/jquery/jquery-3.7.1.min.js"></script>
+    
 
     <script>
 
@@ -45,6 +78,36 @@
         $("p, h5, a").css("color", "red");
 
         $(".baris2>p>span").css("color", "green");
+
+        document.getElementById("textbox").style.display = "none";
+        // $("textarea").hide();
+
+        $(".baris2").append('<h6 class="">Lorem ipsum dolor sit amet.</h6>')
+
+        $(".baris2").remove();
+
+        $("#cars").change(function () {
+            console.log($(this).val());
+        })
+
+        $("button").click(function () {
+            alert("Hello World");
+        })
+        
+        $("#form_data_diri").submit( function() {
+            let nama = $("#nama_anda").val();
+            let email = $("#email_anda").val();
+        });
+
+        if (nama == "") {
+            alert("nama harus diisi");
+        } else if (email == "") {
+            alert("email harus diisi");
+        } else {
+            $("#txt_nama_anda").text(`nama saya ${nama}`);
+            $("#txt_email_anda").text(`email saya ${email}`);
+        }
+
     </script>
 
 

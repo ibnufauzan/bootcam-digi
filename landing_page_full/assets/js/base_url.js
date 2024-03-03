@@ -1,3 +1,3 @@
 function base_url_backend() {
-    return "https://rfa96.esriindonesia.co.id/mini_bootcamp/toko_hp";
+    return "http://34.34.220.202/mini_bootcamp/toko_hp";
 }
