@@ -1,0 +1,180 @@
+1. Create the JS files named "landing_page.js"
+2. Import the "landing_page.js" into "landing_page.html"
+
+// Fetch grid phone data in landing page
+function fetchGridPhone() {
+    $.ajax({
+        url: base_url_backend()+"/read_all",
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        success: function (responseFetchAllHandphone) {
+            let handphoneData = responseFetchAllHandphone.data;
+            $("#fetch_grid_handphone").empty();
+            for(let i = 0; i < handphoneData.length; i++) {
+                $("#fetch_grid_handphone").append(
+                    '<div class="col d-flex align-items-stretch">' +
+                        '<div class="card shadow-sm flex-grow-1">' +
+                            '<img class="bd-placeholder-img card-img-top" src="https://rfa96.esriindonesia.co.id/cdn_mini_bootcamp/'+handphoneData[i].product_image_filename+'"/>' +
+                            '<div class="card-body">' +
+                                '<h4 class="fw-bold">'+handphoneData[i].product_name+'</h4>' +
+                                '<p class="card-text">'+handphoneData[i].product_description+'</p>' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>'
+                );
+            }
+        }
+    });
+}
+
+// Call the fetchGridPhone function when load page of landing page finished
+$(document).ready(function() {
+    fetchGridPhone();
+});
+
+// Trigger the "Refresh Product" button to refresh the content of the product without reloading the website
+$("#refresh_product_btn").click(function() {
+    fetchGridPhone();
+});
+
+
+--------------------------------------------------------
+1. Create the JS files named "admin_page.js"
+2. Import the "admin_page.js" into "admin_page.html"
+
+// Fetch table phone data in admin page
+function fetchData() {
+    $.ajax({
+        url: base_url_backend()+"/read_all",
+        method: "GET",
+        dataType: "json",
+        success: function (fetchAllHandphone) {
+            let handphoneData = fetchAllHandphone.data;
+
+            $("#fetch_handphone_table").empty();
+            if(handphoneData.length < 0) {
+                // If no data
+                $("#fetch_handphone_table").append(
+                    '<tr><td colspan="5" class="text-center">No data available</td></tr>'
+                );
+            } else {
+                // If there is data
+                for(let i = 0; i < handphoneData.length; i++) {
+                    $("#fetch_handphone_table").append(
+                        '<tr>' +
+                            '<td>' + (i+1) + '</td>' +
+                            '<td>' + handphoneData[i].product_name + '</td>' +
+                            '<td>' + handphoneData[i].product_description + '</td>' +
+                            '<td>' +
+                                '<img src="https://rfa96.esriindonesia.co.id/cdn_mini_bootcamp/' + handphoneData[i].product_image_filename + '" alt="Product Image" style="width: 250px; height: 250px;">' +
+                            '</td>' +
+                            '<td>' +
+                                '<button class="btn btn-primary edit_handphone_data" data-handphone-id="'+handphoneData[i].item_id+'">Edit</button>' +
+                                '<button class="btn btn-danger delete_handphone_data" data-handphone-id="'+handphoneData[i].item_id+'">Delete</button>' +
+                            '</td>' +
+                        '</tr>'
+                    );
+                }
+            }
+        }
+    });
+}
+
+// Call the fetchData function when load page of landing page finished
+$(document).ready(function () {
+    fetchData();
+});
+
+// Create the submit event listener for adding and editing handphone data
+$("#handphone_form").submit(function () {
+    let urlSubmit = base_url_backend();
+    if(!(confirm("Are you sure you want to submit this product?"))) {
+        return false;
+    } else {
+        let itemID = $("#item_id").val();
+        let productName = $("#product_name").val();
+        let productDescription = $("#product_description").val();
+        let productImage = $("#product_image").prop("files")[0];
+
+        let formData = new FormData();
+        formData.append("product_name", productName);
+        formData.append("product_description", productDescription);
+
+        if(itemID === "") {
+            urlSubmit += "/add";
+            formData.append("product_image_filename", productImage);
+        } else {
+            formData.append("item_id", itemID);
+            if(productImage === undefined) {
+                formData.append("is_image_updated", "N");
+            } else {
+                formData.append("is_image_updated", "Y");
+                formData.append("product_image_filename", productImage);
+            }
+
+            urlSubmit += "/edit";
+        }
+
+        $.ajax({
+            url: urlSubmit,
+            method: "POST",
+            data: formData,
+            dataType: "json",
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function (responseAddHandphone) {
+                alert(responseAddHandphone.message);
+                $("#handphone_form").trigger("reset");
+                $("#item_id").val("");
+                fetchData();
+            }
+        });
+    }
+});
+
+// Create the "Cancel" button event listener for resetting the form
+$("#cancel_btn").click(function () {
+    $("#handphone_form").trigger("reset");
+    $("#item_id").val("");
+    $("#product_image").prop("required", true);
+});
+
+// Create the "Edit" button event listener for appending the form with the existing data.
+$(document).on("click", ".edit_handphone_data", function() {
+    let itemID = $(this).data("handphone-id");
+    $("#product_image").prop("required", false);
+
+    $.ajax({
+        url: base_url_backend() + "/read_by_id?item_id="+itemID,
+        method: "GET",
+        dataType: "json",
+        success: function (responseFetchSingleHandphone) {
+            let handphoneData = responseFetchSingleHandphone.data;
+            $("#item_id").val(handphoneData.item_id);
+            $("#product_name").val(handphoneData.product_name);
+            $("#product_description").val(handphoneData.product_description);
+        }
+    });
+});
+
+// Create the "Delete" button event listener for deleting the data
+$(document).on("click", ".delete_handphone_data", function() {
+    let itemID = $(this).data("handphone-id");
+    if(confirm("Are you sure you want to delete this product?")) {
+        $.ajax({
+            url: base_url_backend() + "/delete",
+            method: "POST",
+            data: {
+                item_id: itemID
+            },
+            dataType: "json",
+            success: function (responseDeleteHandphone) {
+                alert(responseDeleteHandphone.message);
+                fetchData();
+            }
+        });
+    }
+});

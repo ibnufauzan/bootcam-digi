@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Admin Page - Raka Cell</title>
+
+        <link rel="stylesheet" href="../assets/modules/bootstrap/bootstrap.min.css"/>
+    </head>
+    <body>
+        <div class="container-fluid mt-5">
+            <div class="row">
+                <div class="col-md-12 mb-xxl-4 text-center">
+                    <h1>Admin Page</h1>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-7 mb-3">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr class="align-middle">
+                                <th>No.</th>
+                                <th>Product Name</th>
+                                <th>Product Description</th>
+                                <th>Product Image</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="fetch_handphone_table"></tbody>
+                    </table>
+                </div>
+
+                <div class="col-5 mb-3">
+                    <h5 class="mb-4">Form Data</h5>
+                    <form action="javascript:void(0)" method="post" id="handphone_form">
+                        <input type="hidden" id="item_id" name="item_id" value="">
+                        <label for="product_name" class="form-label fw-bold pt-3 pb-3">Product Name</label>
+                        <input type="text" class="form-control" id="product_name" name="product_name" required>
+
+                        <label for="product_description" class="form-label fw-bold pt-3 pb-3">Product Description</label>
+                        <textarea rows="5" class="form-control" id="product_description" name="product_description" required></textarea>
+
+                        <label for="product_image" class="form-label fw-bold pt-3 pb-3">Product Image</label>
+                        <input type="file" class="form-control" id="product_image" name="product_image" required>
+
+                        <button type="submit" class="btn btn-primary mt-4">SUBMIT DATA</button>
+                        <button type="button" class="btn btn-secondary mt-4" id="cancel_btn">CANCEL</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <script src="../assets/modules/jquery/jquery-3.7.1.min.js"></script>
+        <script src="../assets/modules/bootstrap/bootstrap.bundle.min.js"></script>
+        <script src="../assets/js/base_url.js"></script>
+    </body>
+</html>

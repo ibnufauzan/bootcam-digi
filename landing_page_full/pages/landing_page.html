@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Landing Page - YOUR_NAME Cell</title>
+
+        <link rel="stylesheet" href="../assets/modules/bootstrap/bootstrap.min.css"/>
+        <link rel="stylesheet" href="../assets/css/styles.css"/>
+    </head>
+    <body>
+        <header data-bs-theme="dark" style="margin-bottom: 70px">
+            <nav class="navbar navbar-expand-md fixed-top bg-success">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Raka Cellular</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarCollapse">
+                        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Product</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Contact Us</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="admin_page.html" target="_blank">Admin Page</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <!-- Our Product -->
+            <div class="container-fluid mt-5">
+                <div class="row">
+                    <div class="col-md-12 mb-3 text-center">
+                        <h1>Our Product</h1>
+                        <button id="refresh_product_btn" class="btn btn-primary mt-3">Refresh Product</button>
+                    </div>
+                </div>
+            </div>
+            <div class="container mt-3">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="fetch_grid_handphone"></div>
+            </div>
+
+            <hr class="divider"/>
+
+            <!-- Our staff -->
+            <div class="container-fluid mt-5">
+                <div class="row">
+                    <div class="col-md-12 mb-3 text-center">
+                        <h1>Our Staff</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="container staff mt-5">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?size=626&ext=jpg&ga=GA1.1.2113030492.1709078400&semt=ais"/>
+                        <h2 class="fw-normal mt-3">Suparman</h2>
+                        <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
+                    </div><!-- /.col-lg-4 -->
+                    <div class="col-lg-4">
+                        <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="https://www.shutterstock.com/shutterstock/photos/1554086789/display_1500/stock-photo-close-up-portrait-of-yong-woman-casual-portrait-in-positive-view-big-smile-beautiful-model-posing-1554086789.jpg"/>
+                        <h2 class="fw-normal mt-3">Lely</h2>
+                        <p>Another exciting bit of representative placeholder content. This time, we've moved on to the second column.</p>
+                    </div><!-- /.col-lg-4 -->
+                    <div class="col-lg-4">
+                        <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="https://t3.ftcdn.net/jpg/03/28/19/46/360_F_328194664_RKSHvMLgHphnD1nwQYb4QKcNeEApJmqa.jpg"/>
+                        <h2 class="fw-normal mt-3">Eja</h2>
+                        <p>And lastly this, the third column of representative placeholder content.</p>
+                    </div><!-- /.col-lg-4 -->
+                </div>
+            </div>
+
+            <hr class="divider"/>
+
+            <!-- Contact Us -->
+            <div class="container col-xl-10 col-xxl-8 px-4 py-5">
+                <div class="row align-items-center g-lg-5 py-5">
+                    <div class="col-lg-7 text-center text-lg-start">
+                        <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">Contact Us</h1>
+                        <p class="col-lg-10 fs-4">Have questions about cellphone? Or maybe there is a problem with your cellphone? Please fill in the form beside and we are ready to help you</p>
+                    </div>
+                    <div class="col-md-10 mx-auto col-lg-5">
+                        <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="customer_name" placeholder="Customer Name">
+                                <label for="customer_name">Customer Name</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="customer_email" placeholder="Customer Email">
+                                <label for="customer_email">Customer Email</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <textarea style="height: 150px" class="form-control" id="customer_message" rows="5" placeholder="Customer Message"></textarea>
+                                <label for="customer_message">Customer Message</label>
+                            </div>
+                            <button class="w-100 btn btn-lg btn-primary" type="submit">SEND</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <hr class="divider"/>
+        <footer class="container">
+            <p class="float-end"><a href="#">Back to top</a></p>
+            <p>&copy; 2024 YOUR_NAME Cellular</p>
+        </footer>
+
+        <script src="../assets/modules/jquery/jquery-3.7.1.min.js"></script>
+        <script src="../assets/modules/bootstrap/bootstrap.bundle.min.js"></script>
+        <script src="../assets/js/base_url.js"></script>
+    </body>
+</html>

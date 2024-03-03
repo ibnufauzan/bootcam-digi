@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>jQuery Hands On Lab</title>
+    <link rel="stylesheet" href="../assets/modules/bootstrap/bootstrap.min.css" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 mb-xxl-4 text-center">
+                <h1>jQuery Hands On Lab</h1>
+            </div>
+
+            <div class="">
+                <p>Lorem, ipsum dolor.</p>
+                <h5>Lorem ipsum dolor sit.</h5>
+                <a href="">Lorem, ipsum dolor.</a>
+            </div>
+        </div>
+
+        <div class="row baris2">
+            <p>Lorem ipsum dolor sit. <span>Lorem ipsum dolor sit.</span></p>
+        </div>
+    </div>
+
+    <!-- Put your jQuery module here -->
+    <script src="../assets/modules/jquery/jquery-3.7.1.min.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            console.log("Hello World")
+        });
+
+        document.getElementById("tbl_product");
+
+        $("#tbl_product");
+
+
+        $("p, h5, a").css("color", "red");
+
+        $(".baris2>p>span").css("color", "green");
+    </script>
+
+
+</body>
+
+</html>
