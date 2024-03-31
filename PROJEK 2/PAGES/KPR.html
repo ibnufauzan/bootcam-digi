@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulasi KPR</title>
+    <link rel="stylesheet" href="../ASSETS/css/KPR.css">
+</head>
+<body>
+    <h1>Kalkulator KPR (Angsuran Rumah)</h1>
+
+    <!-- Form untuk menginputkan data-data yang dibutuhkan -->
+    <form id="formkpr">
+      <label for="angsuran">Angsuran Pokok per Bulan (RP):</label>
+      <input type="number" id="angsuran" name="angsuran" step="any" required />
+
+      <label for="bunga">Bunga (persen):</label>
+      <input type="number" id="bunga" name="bunga" step="any" required />
+
+      <label for="tenor">Tenor (tahun):</label>
+      <input type="number" id="tenor" name="tenor" required />
+
+      <button type="submit">Hitung</button>
+    </form>
+
+    <!-- Bagian hasil akan muncul disini -->
+    <div id="hasil"></div>
+
+    <script>
+      // Mendapatkan elemen-elemen
+      const formkpr = document.getElementById("formkpr");
+      const angsuran = document.getElementById("angsuran");
+      const bunga = document.getElementById("bunga");
+      const tenor = document.getElementById("tenor");
+      const hasil = document.getElementById("hasil");
+
+      // Event listener ketika tombol submit diklik
+      formkpr.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        // Mem validasi input
+        if (isNaN(parseFloat(angsuran.value)) || isNaN(parseFloat(bunga.value)) || isNaN(parseInt(tenor.value))) {
+          alert("Harap masukkan data yang valid");
+          return;
+        }
+
+        // Mencari hasil
+        const bungaPerBulan = parseFloat(bunga.value) / 100 / 12;
+        const totalAngsuran = parseFloat(angsuran.value) + parseFloat(angsuran.value) * bungaPerBulan;
+        const jumlahAngsuran = totalAngsuran * parseInt(tenor.value) * 12;
+
+        // Menampilkan hasil
+        hasil.innerHTML =`
+          Jumlah angsuran: ${jumlahAngsuran.toLocaleString()}`;"
+
+      });
+    </script>
+    
+</body>
+</html>
